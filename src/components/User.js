@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import SampleData from '../SampleData'
 import InfoCard from './InfoCard';
-import {Box} from 'rebass';
+import {Box , Flex} from 'rebass';
 import Transaction from './Transaction';
 import styled from 'styled-components';
 import AddTransaction from './AddTransaction';
+import { transformAsync } from '@babel/core';
 
 
-const StyledTransaction = styled(Transaction)` 
-    background-color: ${props => props.bg};
+const CenteredBox = styled(Box)`
+
 `
+
 
 class User extends React.Component {
 
@@ -18,7 +20,8 @@ class User extends React.Component {
         this.state = {
             name: '',
             money: '',
-            transactions: []
+            income: [],
+            spending: []
         }
     }
 
@@ -27,29 +30,60 @@ class User extends React.Component {
         this.setState({
             name: userName,
             money: SampleData[userName].money,
-            transactions: SampleData[userName].transactions
+        });
+        let income = []
+        let spending = []
+        SampleData[userName].transactions.map(transaction => {
+            if (transaction.type === 1) {
+                income.push(transaction);
+            }
+            else {
+                spending.push(transaction);
+            }
+        })
+        this.setState({
+            income: income,
+            spending : spending
         })
     }
 
 
     addTransaction = (transaction) => {
-        // const transactions = {...this.state.transactions};
-        // transactions.push(transaction);
-        this.setState({transactions : [...this.state.transactions , transaction]});
+        let transactions = []
+        console.log(transaction.type)
+        if(transaction.type === "Income"){
+            transactions = [...this.state.income];
+            transactions.push(transaction);
+            this.setState({income : transactions});
+        }
+        else{
+            transactions = [...this.state.spending];
+            transactions.push(transaction);
+            this.setState({spending : transactions});
+        }
     }
 
     render(){
         return(
             <React.Fragment>
                 <h1>{this.state.name}</h1>
-                <h2>Total money</h2>
-                <p>{this.state.money}</p>
-                <h2>Transactions</h2>
-                <ul>
-                    {(this.state.transactions).map(transaction => 
-                        <StyledTransaction details={transaction} bg={transaction.type === 0 ? 'Red' : 'Green'}>
-                        </StyledTransaction>)}
-                </ul>
+                <h2>Balance</h2>
+                <p>${this.state.money}</p>
+                <Flex>
+                    <CenteredBox width={1/2} px={16}>
+                    <h2>Income</h2>
+                        {(this.state.income).map(transaction => 
+                            <Transaction details={transaction} bg={transaction.type === 0 ? 'Red' : 'Green'}>
+                            </Transaction>)}
+                    </CenteredBox>
+                    <CenteredBox width={1/2} px={16}>
+                        <h2>Spending</h2>
+                        {(this.state.spending).map(transaction =>
+                            <Transaction details={transaction} bg={transaction.type ===0 ? 'Red' : 'Green'}>                                
+                            </Transaction>)}
+                    </CenteredBox>
+                </Flex>
+
                 <h2>
                     Add Transaction
                 </h2>

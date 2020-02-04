@@ -19,7 +19,7 @@ class AddTransaction extends React.Component {
         event.preventDefault();
         const transaction = {
             name: this.nameRef.current.value,
-            type: 1,
+            type: this.typeRef.current.value,
             amount: parseInt(this.amountRef.current.value)
         }
         this.props.addTransaction(transaction);
@@ -31,6 +31,10 @@ class AddTransaction extends React.Component {
             <form onSubmit={this.createTransaction}>
                 <input placeholder="Name" ref={this.nameRef}/>
                 <input placeholder="Amount" ref={this.amountRef}/>
+                <select ref={this.typeRef}>
+                    <option value="Spending">Spending</option>
+                    <option value="Income">Income</option>
+                </select>
                 <button type="submit">Submit</button>
             </form>
         )

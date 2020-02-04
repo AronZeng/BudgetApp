@@ -14,7 +14,6 @@ const Transaction = (props) => {
     return (
         <StyledBox type={props.details.type}>
             <p>{name}</p>
-            <p>{type}</p>
             <p>${amount}</p>
         </StyledBox>
     )
