@@ -7,14 +7,12 @@ const StyledBox = styled(Box)`
 `
 
 const Transaction = (props) => {
-
-
-
     const {name, type, amount} = props.details;
     return (
         <StyledBox type={props.details.type}>
             <p>{name}</p>
             <p>${amount}</p>
+            <p>{type}</p>
         </StyledBox>
     )
 }

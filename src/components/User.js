@@ -49,16 +49,17 @@ class User extends React.Component {
 
     addTransaction = (transaction) => {
         if(transaction.type === "Income"){
+            transaction.type = 1;
             this.setState((prevState) => ({
                 income: [...prevState.income , transaction]
             }))
         }
         else{
+            transaction.type = 0;
             this.setState((prevState) => ({
                 spending:[...prevState.spending , transaction]
             }))
         }
-        console.log(this.state)
     }
 
     render(){
