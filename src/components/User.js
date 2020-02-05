@@ -5,7 +5,6 @@ import {Box , Flex} from 'rebass';
 import Transaction from './Transaction';
 import styled from 'styled-components';
 import AddTransaction from './AddTransaction';
-import { transformAsync } from '@babel/core';
 
 
 const CenteredBox = styled(Box)`
@@ -49,18 +48,17 @@ class User extends React.Component {
 
 
     addTransaction = (transaction) => {
-        let transactions = []
-        console.log(transaction.type)
         if(transaction.type === "Income"){
-            transactions = [...this.state.income];
-            transactions.push(transaction);
-            this.setState({income : transactions});
+            this.setState((prevState) => ({
+                income: [...prevState.income , transaction]
+            }))
         }
         else{
-            transactions = [...this.state.spending];
-            transactions.push(transaction);
-            this.setState({spending : transactions});
+            this.setState((prevState) => ({
+                spending:[...prevState.spending , transaction]
+            }))
         }
+        console.log(this.state)
     }
 
     render(){
