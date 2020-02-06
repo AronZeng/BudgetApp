@@ -72,7 +72,7 @@ class User extends React.Component {
                     <CenteredBox width={1/2} px={16}>
                     <h2>Income</h2>
                         {(this.state.income).map(transaction => 
-                            <Transaction details={transaction} bg={transaction.type === 0 ? 'Red' : 'Green'}>
+                            <Transaction details={transaction} color="income">
                             </Transaction>)}
                     </CenteredBox>
                     <CenteredBox width={1/2} px={16}>
