@@ -3,23 +3,25 @@ import styled from 'styled-components';
 import {Box, Flex} from 'rebass';
 import {color} from 'styled-system';
 import {NavLink} from 'react-router-dom';
+import { black, red } from 'color-name';
+
 const NavBox = styled(Flex)`
-    box-shadow: 2 5 0 0 #888888;
-    border-bottom-color: black;
-    border-bottom-style: solid;
-    height: 70px;
+    height: 30px;
+    vertical-align: middle;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+    z-index: 9000000000;
 `
 
-const NavItem = styled(Box)`
-    height: 70px;
+const NavItem = styled(NavLink)`
+    height: 30px;
     font-size: 20px;
     text-align: center;
-    padding-top: 20px;
-    border-color: black;
-    border-style: solid;
-    border-width: thin;
+    width: 20%;
+    vertical-align: middle;
+    text-decoration: none;
+    color: black;
+    z-index: 9000;
 `
-
 
 
 
@@ -69,21 +71,46 @@ class NavBar extends React.Component {
     render() {
         return (
             <NavBox>
-                <NavItem width={[ 1/4 , 1/5]}>
+                <NavItem 
+                to="/user/Aron" 
+                activeStyle={{
+                    borderBottom: "solid",
+                    borderBottomColor: "black"
+                }}>
                     Dashboard
                 </NavItem >
-                <NavItem width={[ 1/4 , 1/5]}>
+                <NavItem 
+                to="/user/income"
+                activeStyle={{
+                    borderBottom: "solid",
+                    borderBottomColor: "black"
+                }}>
                     Income
                 </NavItem>
-                <NavItem width={[ 1/4 , 1/5]}>
+                <NavItem  
+                to="/user/spending"
+                activeStyle={{
+                    borderBottom: "solid",
+                    borderBottomColor: "black"
+                }}>
                     Spending
                 </NavItem>
-                <NavItem width={[ 1/4 , 1/5]}>
+                <NavItem  
+                to="/user/goals"
+                activeStyle={{
+                    borderBottom: "solid",
+                    borderBottomColor: "black"
+                }}>
                     Goals
                 </NavItem>
-                {/* <NavItem width={[ 1/4 , 1/5]}>
+                <NavItem 
+                to="/user/profile"
+                activeStyle={{
+                    borderBottom: "solid",
+                    borderBottomColor: "black"
+                }}>
                     Profile
-                </NavItem> */}
+                </NavItem>
             </NavBox>
         )
     }

@@ -3,7 +3,10 @@ import DataTable from 'react-data-table-component';
 import Data from '../SampleData2';
 import AddTransaction from './AddTransaction';
 
-const Income = (props) => {
+const Spending = (props) => {
+
+    
+
     const columns = [
         {
             name: 'Name',
@@ -22,7 +25,7 @@ const Income = (props) => {
     return (
         <>
             <DataTable
-                title= "Income"
+                title= "Spending"
                 columns={columns}
                 data={Data}
                 style={{
@@ -34,4 +37,4 @@ const Income = (props) => {
     )
 }
 
-export default Income
+export default Spending

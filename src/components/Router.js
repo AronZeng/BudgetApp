@@ -7,6 +7,8 @@ import NavBar from './Navbar';
 import {ThemeProvider} from 'styled-components';
 import theme from '../theme';
 import {GlobalHotKeys} from 'react-hotkeys';
+import Income from './Income';
+import Spending from './Spending';
 
 
 
@@ -31,6 +33,8 @@ const Router = () => {
           <NavBar/> 
               <Switch>
                   <Route exact path="/" component={UserPicker}/>
+                  <Route path="/user/income" component={Income}/>
+                  <Route path="/user/spending" component={Spending}/>
                   <Route path="/user/:userName" component={User}/>
                   <Route component={NotFound}/>
               </Switch>
