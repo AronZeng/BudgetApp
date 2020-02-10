@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import Data from '../SampleData2';
 import AddTransaction from './AddTransaction';
 
 const Spending = (props) => {
 
-    
+
+
+    const [data , setData] = useState([]);
+
+    useEffect(() => {
+        alert("Something is happening")
+        Data === [] ?  setData([]) : setData([...Data]) //in the future Data would be from an API call
+    }, [])
+
+
+    const addTransaction = (transaction) => {
+        let newTransaction = {
+            name: transaction.name,
+            amount: transaction.amount
+        }
+        data === [] ? setData([newTransaction]) : setData([ ...data, newTransaction])
+    }
 
     const columns = [
         {
@@ -27,12 +43,12 @@ const Spending = (props) => {
             <DataTable
                 title= "Spending"
                 columns={columns}
-                data={Data}
+                data={data}
                 style={{
                     backgroundColor: "red"
                 }}
             />
-            <AddTransaction/>
+            <AddTransaction addTransaction={addTransaction} />
         </>
     )
 }
