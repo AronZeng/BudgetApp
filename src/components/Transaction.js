@@ -1,7 +1,7 @@
 import React from 'react';
 import {Flex, Box} from 'rebass';
 import styled from 'styled-components';
-import {color} from 'styled-system'
+import {color} from 'styled-system';
 
 const StyledBox = styled(Box)`
     ${color}

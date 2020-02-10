@@ -6,22 +6,37 @@ import NotFound from './NotFound';
 import NavBar from './Navbar';
 import {ThemeProvider} from 'styled-components';
 import theme from '../theme';
+import {GlobalHotKeys} from 'react-hotkeys';
+
+
 
 const Router = () => {
+    const NAV_SHORTCUTS = {
+        TOGGLE_JUMP: ["ctrl+j" , "command+j"]
+    }
+    
+    const TOGGLE_JUMP = () => {
+        console.log("Test")
+        
+    }
+
+    
+
     return (
         <>
+        <GlobalHotKeys keyMap={NAV_SHORTCUTS} handlers={{TOGGLE_JUMP}}>
         <ThemeProvider theme={theme}>
-        <NavBar>
-            Test
-        </NavBar>
+           
         <BrowserRouter>
-            <Switch>
-                <Route exact path="/" component={UserPicker}/>
-                <Route path="/user/:userName" component={User}/>
-                <Route component={NotFound}/>
-            </Switch>
+          <NavBar/> 
+              <Switch>
+                  <Route exact path="/" component={UserPicker}/>
+                  <Route path="/user/:userName" component={User}/>
+                  <Route component={NotFound}/>
+              </Switch>
         </BrowserRouter>
         </ThemeProvider>
+        </GlobalHotKeys>
         </>
     )
 }
