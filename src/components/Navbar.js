@@ -10,7 +10,9 @@ const NavBox = styled(Flex)`
     vertical-align: middle;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
     z-index: 9000000000;
+    margin-bottom: 10px !important;
 `
+//used important here since I had no idea where the margin 0 was coming from
 
 const NavItem = styled(NavLink)`
     height: 30px;
@@ -21,51 +23,10 @@ const NavItem = styled(NavLink)`
     text-decoration: none;
     color: black;
     z-index: 9000;
+    
 `
 
-
-
-
-
-// const NavBar = (props) => {
-
-//     const redirectyaboy = (page) => {        
-        
-//         console.log("Test"
-//         )
-//     }
-
-//         return (
-//             <NavBox>
-//                 <NavItem width={1/5} onClick={redirectyaboy()}> 
-//                     Dashboard
-//                 </NavItems>
-//                 <NavItems width={1/5}>
-//                     Income
-//                 </NavItems>
-//                 <NavItems width={1/5}>
-//                     Spending
-//                 </NavItems>
-//                 <NavItems width={1/5}>
-//                     Goals
-//                 </NavItems>
-//                 <NavItems width={1/5}>
-//                     Profile
-//                 </NavItems>
-//             </NavBox>
-//         )
-// }
-
-
-
 class NavBar extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            page: ""
-        }
-    }
 
 
     render() {

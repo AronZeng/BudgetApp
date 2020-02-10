@@ -10,7 +10,6 @@ const Spending = (props) => {
     const [data , setData] = useState([]);
 
     useEffect(() => {
-        alert("Something is happening")
         Data === [] ?  setData([]) : setData([...Data]) //in the future Data would be from an API call
     }, [])
 
