@@ -2,9 +2,17 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import Data from '../SampleData2';
 import AddTransaction from './AddTransaction';
+import {Alert} from 'antd';
+import styled from 'styled-components';
 
 const Spending = (props) => {
 
+    const StyledAlert = styled(Alert)`
+      display: ${() => displayAlert === true ? "" : "none"};
+      z-index: 5000;
+      margin: 10;
+    `
+    const [displayAlert , setDisplayAlert] = useState(false);
     const [data , setData] = useState([]);
 
     useEffect(() => {
@@ -20,7 +28,10 @@ const Spending = (props) => {
             type: transaction.type
         }
         data === [] ? setData([newTransaction]) : setData([ ...data, newTransaction])
-        
+        setDisplayAlert(true);
+        setTimeout(() => {
+          setDisplayAlert(false)
+        }, 5000)
     }
 
     const columns = [
@@ -52,6 +63,12 @@ const Spending = (props) => {
 
     return (
         <>
+            <StyledAlert
+                message="Success"
+                description="Successfully added a transaction"
+                type="success"
+                showIcon                
+            />
             <DataTable
                 title= "Spending"
                 columns={columns}

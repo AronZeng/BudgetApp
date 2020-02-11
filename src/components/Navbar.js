@@ -9,7 +9,7 @@ const NavBox = styled(Flex)`
     height: 30px;
     vertical-align: middle;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
-    z-index: 9000000000;
+    z-index: 420;
     margin-bottom: 10px !important;
 `
 //used important here since I had no idea where the margin 0 was coming from
