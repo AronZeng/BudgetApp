@@ -1,44 +1,71 @@
 import React from 'react';
-import {
-    Label,
-    Input,
-    Select,
-    Textarea,
-    Radio,
-    Checkbox
-} from '@rebass/forms';
-import {Box, Button} from 'rebass';
+import {Form, Input, Button, Select} from 'antd';
+import {Box, Flex} from 'rebass';
 
 class AddTransaction extends React.Component {
 
-    nameRef = React.createRef();
-    typeRef = React.createRef();
-    amountRef = React.createRef();
+  handleSubmit = e => {
+    e.preventDefault();
+  }
+  
 
-    createTransaction = (event) => {
-        event.preventDefault();
-        const transaction = {
-            name: this.nameRef.current.value,
-            type: this.typeRef.current.value,
-            amount: parseInt(this.amountRef.current.value)
-        }
-        this.props.addTransaction(transaction);
-        event.currentTarget.reset();
-    }
-
-    render() {
-        return(
-            <form onSubmit={this.createTransaction}>
-                <input placeholder="Name" ref={this.nameRef}/>
-                <input placeholder="Amount" ref={this.amountRef}/>
-                <select ref={this.typeRef}>
-                    <option value="Spending">Spending</option>
-                    <option value="Income">Income</option>
-                </select>
-                <button type="submit">Submit</button>
-            </form>
-        )
+    render () {
+      const {Option} = Select;
+      const { getFieldDecorator } = this.props.form;
+      return (
+        <>
+        <Flex>
+          <Box width={1/2} margin={10}>
+          <h2>Add a transaction</h2>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Item>
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: 'Please input the name' }],
+            })(
+              <Input
+                placeholder="Name"
+                size="large"
+              />,
+            )}
+            </Form.Item>
+            <Form.Item>
+            {getFieldDecorator('amount', {
+              rules: [{required: true, message: "Please input the amount"}],
+            })(
+              <Input
+                placeholder="Amount"
+                size="large"
+              />
+            )}
+            </Form.Item>
+            <Form.Item>
+            {getFieldDecorator('type', {
+              rules: [{required: true, message: "Please select the type of transaction"}],
+            })(
+              <Select 
+                size="large"
+                mode="default" 
+                placeholder="Transaction Type"
+                >
+                <Option value="spending">Spending</Option>
+                <Option value="income">Income</Option>
+              </Select>
+            )}
+            </Form.Item>
+            <Form.Item>
+              <Button htmlType="submit" type="primary">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+          </Box>
+          <Box width={1/2}/>
+          </Flex>
+        </>
+      )
     }
 }
 
-export default AddTransaction
+const WrappedAddTransaction = Form.create()(AddTransaction);
+
+export default WrappedAddTransaction
