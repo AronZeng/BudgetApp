@@ -9,6 +9,7 @@ import theme from '../theme';
 import {GlobalHotKeys} from 'react-hotkeys';
 import Income from './Income';
 import Spending from './Spending';
+import Random from './Random';
 
 
 
