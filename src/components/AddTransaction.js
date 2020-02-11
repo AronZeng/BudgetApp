@@ -1,11 +1,27 @@
 import React from 'react';
-import {Form, Input, Button, Select} from 'antd';
+import {Form, Input, Button, Select, DatePicker} from 'antd';
 import {Box, Flex} from 'rebass';
 
 class AddTransaction extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (err) {
+        alert("Insufficient form data")
+        return
+      }
+      const formValues = this.props.form.getFieldsValue();
+      const transaction = {
+        name: formValues.name,
+        amount: formValues.amount,
+        type: formValues.type,
+        date: formValues.date._d.toDateString()
+      }
+      this.props.addTransaction(transaction);
+      this.props.form.resetFields();
+    })
+
   }
   
 
@@ -50,6 +66,13 @@ class AddTransaction extends React.Component {
                 <Option value="spending">Spending</Option>
                 <Option value="income">Income</Option>
               </Select>
+            )}
+            </Form.Item>
+            <Form.Item>
+            {getFieldDecorator('date', {
+              rules: [{required: true, message: "Please select the date"}],
+            })(
+              <DatePicker size="large"/>
             )}
             </Form.Item>
             <Form.Item>

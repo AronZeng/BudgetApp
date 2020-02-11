@@ -4,6 +4,7 @@ import Data from '../SampleData2';
 import AddTransaction from './AddTransaction';
 
 const Income = (props) => {
+
     const columns = [
         {
             name: 'Name',

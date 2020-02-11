@@ -17,9 +17,11 @@ const Spending = (props) => {
     const addTransaction = (transaction) => {
         let newTransaction = {
             name: transaction.name,
-            amount: transaction.amount
+            amount: transaction.amount,
+            date: transaction.date
         }
         data === [] ? setData([newTransaction]) : setData([ ...data, newTransaction])
+        
     }
 
     const columns = [
@@ -34,6 +36,12 @@ const Spending = (props) => {
             selector: 'amount',
             sortable: 'true',
             left: 'true',
+        },
+        {
+            name: 'Date',
+            selector: 'date',
+            sortable: 'true',
+            left: 'true',
         }
     ]
 
@@ -43,9 +51,6 @@ const Spending = (props) => {
                 title= "Spending"
                 columns={columns}
                 data={data}
-                style={{
-                    backgroundColor: "red"
-                }}
             />
             <AddTransaction addTransaction={addTransaction} />
         </>
