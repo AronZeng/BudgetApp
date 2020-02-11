@@ -5,8 +5,6 @@ import AddTransaction from './AddTransaction';
 
 const Spending = (props) => {
 
-
-
     const [data , setData] = useState([]);
 
     useEffect(() => {
