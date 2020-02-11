@@ -1,13 +1,15 @@
 const data = [
     {
-        name: "Test1",
-        amount: 100,
-        date: "Mon Feb 10 2020"
+        name: "Mcdonalds",
+        amount: 12,
+        date: "Mon Feb 10 2020",
+        type: "Food"
     },
     {
-        name: "Test2",
-        amount: 200,
-        date: "Tue Feb 11 2020"
+        name: "Mercedes C43 AMG",
+        amount: 70000,
+        date: "Tue Feb 11 2020",
+        type: "Luxury"
     }
 ]
 

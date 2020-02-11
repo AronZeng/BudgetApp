@@ -92,7 +92,7 @@ class User extends React.Component {
                 <h2>
                     Add Transaction
                 </h2>
-                <AddTransaction  addTransaction={this.addTransaction}/>
+                <AddTransaction  addTransaction={this.addTransaction} dropdownvalues={["Income", "Spending"]}/>
                 </GlobalHotKeys>
             </React.Fragment>
         )

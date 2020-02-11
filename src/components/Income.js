@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect , useState} from 'react';
 import DataTable from 'react-data-table-component';
 import Data from '../SampleData2';
 import AddTransaction from './AddTransaction';
 
 const Income = (props) => {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+      Data === [] ?  setData([]) : setData([...Data]) //in the future Data would be from an API call
+  }, [])
+
+  const addTransaction = (transaction) => {
+    let newTransaction = {
+        name: transaction.name,
+        amount: transaction.amount,
+        date: transaction.date,
+        type: transaction.type
+    }
+    data === [] ? setData([newTransaction]) : setData([ ...data, newTransaction])
+    
+}
 
     const columns = [
         {
@@ -17,6 +34,18 @@ const Income = (props) => {
             selector: 'amount',
             sortable: 'true',
             left: 'true',
+        },
+        {
+            name: 'Date',
+            selector: 'date',
+            sortable: 'true',
+            left: 'true',
+        },
+        {
+            name: 'Type',
+            selector: 'type',
+            sortable: 'true',
+            left: 'true',
         }
     ]
 
@@ -25,12 +54,9 @@ const Income = (props) => {
             <DataTable
                 title= "Income"
                 columns={columns}
-                data={Data}
-                style={{
-                    backgroundColor: "red"
-                }}
+                data={data}
             />
-            <AddTransaction/>
+            <AddTransaction dropdownvalues={["Paycheque" , "Stocks", "Other"]} addTransaction={addTransaction} />
         </>
     )
 }

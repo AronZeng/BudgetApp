@@ -9,7 +9,6 @@ import theme from '../theme';
 import {GlobalHotKeys} from 'react-hotkeys';
 import Income from './Income';
 import Spending from './Spending';
-import Random from './Random';
 
 
 
@@ -34,9 +33,9 @@ const Router = () => {
           <NavBar/> 
               <Switch>
                   <Route exact path="/" component={UserPicker}/>
-                  <Route path="/user/income" component={Income}/>
-                  <Route path="/user/spending" component={Spending}/>
-                  <Route path="/user/:userName" component={User}/>
+                  <Route exact path="/user/income" component={Income}/>
+                  <Route exact path="/user/spending" component={Spending}/>
+                  <Route exact path="/user/:userName" component={User}/>
                   <Route component={NotFound}/>
               </Switch>
         </BrowserRouter>

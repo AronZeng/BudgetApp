@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
               <Input
                 placeholder="Password"
                 size="large"
-              />,
+              />
           </Form.Item>
           <Form.Item>
             <Button htmlType="submit" type="primary">

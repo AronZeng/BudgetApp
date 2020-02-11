@@ -63,8 +63,9 @@ class AddTransaction extends React.Component {
                 mode="default" 
                 placeholder="Transaction Type"
                 >
-                <Option value="spending">Spending</Option>
-                <Option value="income">Income</Option>
+                  {this.props.dropdownvalues.map(value => 
+                    <Option value={value}>{value}</Option>
+                  )}
               </Select>
             )}
             </Form.Item>
