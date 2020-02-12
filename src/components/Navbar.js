@@ -36,7 +36,7 @@ class NavBar extends React.Component {
                 to="/user/Aron" 
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "black"
+                    borderBottomColor: "#1890ff"
                 }}>
                     Dashboard
                 </NavItem >
@@ -44,7 +44,7 @@ class NavBar extends React.Component {
                 to="/user/income"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "black"
+                    borderBottomColor: "#1890ff"
                 }}>
                     Income
                 </NavItem>
@@ -52,7 +52,7 @@ class NavBar extends React.Component {
                 to="/user/spending"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "black"
+                    borderBottomColor: "#1890ff"
                 }}>
                     Spending
                 </NavItem>
@@ -60,7 +60,7 @@ class NavBar extends React.Component {
                 to="/user/goals"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "black"
+                    borderBottomColor: "#1890ff"
                 }}>
                     Goals
                 </NavItem>
@@ -68,7 +68,7 @@ class NavBar extends React.Component {
                 to="/user/profile"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "black"
+                    borderBottomColor: "#1890ff"
                 }}>
                     Profile
                 </NavItem>

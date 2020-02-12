@@ -86,8 +86,14 @@ const User = (props) => {
               transactions[key].map(item => 
                 <Card>
                   <Flex>
-                    <p>{item.name}</p>
-                    <p>{item.amount}</p>
+                    <Box width={1/2}>
+                      <p>{item.name}</p>
+                    </Box>
+                    <Box width={1/2} style={{
+                      textAlign: "right"
+                    }}>
+                      <p>${item.amount}</p>
+                    </Box>
                   </Flex>
                 </Card>
                 )  
