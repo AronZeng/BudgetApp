@@ -32,38 +32,39 @@ const User = (props) => {
 
   useEffect(() => {
     setName(props.match.params.userName);
-    let income = [];
-    let spending = [];
+    let incomeArray = [];
+    let spendingArray = [];
+    //only works on first render
     SampleData[props.match.params.userName].transactions.map(transaction => {
-        if (transaction.type === 1) {
-            income.push(transaction);
-        }
-        else {
-            spending.push(transaction);
-        }
+      if (transaction.type === 1) {
+          incomeArray.push(transaction);
+      }
+      else {
+          spendingArray.push(transaction);
+      }
     })
-    console.log(income)
-    console.log(spending)
+
     let res = {
-      Income: income,
-      Spending: spending
+      Income: incomeArray,
+      Spending: spendingArray
     }
-    console.log(res)
     setTransactions(res)
-    console.log(transactions)
   }, [])
 
 
 
-
-  const addTransaction = (transaction) => {
-        if(transaction.type === "Income"){
-            setIncome([...income , transaction])  
-        }
-        else{
-            setSpending([...spending, transaction])
-        }
+//might not need this separate income/spending array
+  const addTransaction =  (transaction) => {
+    console.log(transaction)
+    let newTransactions = {...transactions}
+    if(transaction.type === "Income"){
+        newTransactions.Income = [...newTransactions.Income , transaction]
     }
+    else{
+      newTransactions.Spending = [...newTransactions.Spending , transaction]
+    }
+    setTransactions(newTransactions)
+  }
 
   const onTabChange = (key) => {
       setKey(key);
