@@ -1,102 +1,101 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SampleData from '../SampleData'
 import InfoCard from './InfoCard';
 import {Box , Flex} from 'rebass';
+import {Card} from 'antd';
 import Transaction from './Transaction';
 import styled from 'styled-components';
 import AddTransaction from './AddTransaction';
 import { HotKeys, GlobalHotKeys} from 'react-hotkeys';
 
 
-const CenteredBox = styled(Box)`
+const tabList = [
+  {
+    key: 'Income',
+    tab: 'Income'
+  },
+  {
+    key: 'Spending',
+    tab: 'Spending'
+  },
+]
 
-`
+const User = (props) => {
 
 
-class User extends React.Component {
+  const [name, setName] = useState("");
+  const [transactions, setTransactions] = useState({});
+  const [income, setIncome] = useState([]);
+  const [spending, setSpending] = useState([]);
+  const [key, setKey] = useState("Income");
+    
 
-
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            money: '',
-            income: [],
-            spending: []
+  useEffect(() => {
+    setName(props.match.params.userName);
+    let income = [];
+    let spending = [];
+    SampleData[props.match.params.userName].transactions.map(transaction => {
+        if (transaction.type === 1) {
+            income.push(transaction);
         }
+        else {
+            spending.push(transaction);
+        }
+    })
+    console.log(income)
+    console.log(spending)
+    let res = {
+      Income: income,
+      Spending: spending
     }
-
-    componentDidMount() {
-        const userName = this.props.match.params.userName
-        this.setState({
-            name: userName,
-            money: SampleData[userName].money,
-        });
-        let income = []
-        let spending = []
-        SampleData[userName].transactions.map(transaction => {
-            if (transaction.type === 1) {
-                income.push(transaction);
-            }
-            else {
-                spending.push(transaction);
-            }
-        })
-        this.setState({
-            income: income,
-            spending : spending
-        })
-    }
+    console.log(res)
+    setTransactions(res)
+    console.log(transactions)
+  }, [])
 
 
-    addTransaction = (transaction) => {
+
+
+  const addTransaction = (transaction) => {
         if(transaction.type === "Income"){
-            transaction.type = 1;
-            this.setState((prevState) => ({
-                income: [...prevState.income , transaction]
-            }))
+            setIncome([...income , transaction])  
         }
         else{
-            transaction.type = 0;
-            this.setState((prevState) => ({
-                spending:[...prevState.spending , transaction]
-            }))
+            setSpending([...spending, transaction])
         }
     }
 
+  const onTabChange = (key) => {
+      setKey(key);
+    };
 
-
-    render(){
-        return(
-            <React.Fragment>
-                <GlobalHotKeys keyMap={this.NAV_SHORTCUTS} handlers={this.TOGGLE_JUMP}>
-                <h1>{this.state.name}</h1>
-                <h2>Balance</h2>
-                <p>${this.state.money}</p>
-                <Flex>
-                    <CenteredBox width={1/2} px={16}>
-                    <h2>Income</h2>
-                        {(this.state.income).map(transaction => 
-                            <Transaction details={transaction} >
-                            </Transaction>)}
-                    </CenteredBox>
-                    <CenteredBox width={1/2} px={16}>
-                        <h2>Spending</h2>
-                        {(this.state.spending).map(transaction =>
-                            <Transaction details={transaction} >                                
-                            </Transaction>)}
-                    </CenteredBox>
-                </Flex>
-
-                <h2>
-                    Add Transaction
-                </h2>
-                <AddTransaction  addTransaction={this.addTransaction} dropdownvalues={["Income", "Spending"]}/>
-                </GlobalHotKeys>
-            </React.Fragment>
-        )
-    }
+    return(
+      <>
+            <Card 
+              title="Transactions"
+              style={{
+              width: "50%",
+              margin: 10,
+              }}
+              tabList={tabList}
+              onTabChange={key => {
+              onTabChange(key);
+              }}
+            >
+            {transactions[key] === undefined ? "Loading ..." : 
+              transactions[key].map(item => 
+                <Card>
+                  <Flex>
+                    <p>{item.name}</p>
+                    <p>{item.amount}</p>
+                  </Flex>
+                </Card>
+                )  
+            }
+            </Card>
+            <AddTransaction  addTransaction={addTransaction} dropdownvalues={["Income", "Spending"]}/>
+        </>
+      )
 }
 
 export default User;
