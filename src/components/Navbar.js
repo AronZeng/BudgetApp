@@ -21,10 +21,10 @@ const NavItem = styled(NavLink)`
     width: 20%;
     vertical-align: middle;
     text-decoration: none;
-    color: black;
     z-index: 9000;
-    
-`
+    color: black;
+    ${color}
+    `
 
 class NavBar extends React.Component {
 
@@ -36,7 +36,8 @@ class NavBar extends React.Component {
                 to="/user/Aron" 
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "#1890ff"
+                    borderBottomColor: "#1890ff",
+                    color: "#1890ff"
                 }}>
                     Dashboard
                 </NavItem >
@@ -44,7 +45,8 @@ class NavBar extends React.Component {
                 to="/user/income"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "#1890ff"
+                    borderBottomColor: "#1890ff",
+                    color: "#1890ff"
                 }}>
                     Income
                 </NavItem>
@@ -52,7 +54,8 @@ class NavBar extends React.Component {
                 to="/user/spending"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "#1890ff"
+                    borderBottomColor: "#1890ff",
+                    color: "#1890ff"
                 }}>
                     Spending
                 </NavItem>
@@ -60,7 +63,8 @@ class NavBar extends React.Component {
                 to="/user/goals"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "#1890ff"
+                    borderBottomColor: "#1890ff",
+                    color: "#1890ff"
                 }}>
                     Goals
                 </NavItem>
@@ -68,7 +72,8 @@ class NavBar extends React.Component {
                 to="/user/profile"
                 activeStyle={{
                     borderBottom: "solid",
-                    borderBottomColor: "#1890ff"
+                    borderBottomColor: "#1890ff",
+                    color: "#1890ff"
                 }}>
                     Profile
                 </NavItem>

@@ -1,6 +1,5 @@
 export default {
     colors: {
-        income: "Green",
-        spending: "Red"
+        primary: "#1890ff"
     }
 }
