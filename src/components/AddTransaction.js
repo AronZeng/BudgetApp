@@ -10,11 +10,17 @@ const transactionTypes = [{ value: "Income" }, { value: "Spending" }];
 
 const AddTransactions = () => {
   return (
-    <Card>
+    <Card style={{ marginLeft: "25%", marginRight: "25%" }}>
       <Formik
         enableReinitialize
         render={props => (
-          <Stack flexDirection="column" spacing="md">
+          <Stack
+            flexDirection="column"
+            spacing="md"
+            p="md"
+            ml={1 / 4}
+            mr={1 / 4}
+          >
             <TextField name="name" {...props} />
             <SelectField
               name="type"

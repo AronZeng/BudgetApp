@@ -1,6 +1,7 @@
 export default {
   colors: {
-    primary: "#1890ff"
+    primary: "#1890ff",
+    green: "#34eb64"
   },
 
   space: {

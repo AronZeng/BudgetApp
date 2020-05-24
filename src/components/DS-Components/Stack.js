@@ -1,9 +1,9 @@
 import React, { Children } from "react";
 import { Flex, Box } from "rebass/styled-components";
-import { border, space } from "styled-system";
-import { styled } from "styled-components";
+import { border, color, space } from "styled-system";
+import styled from "styled-components";
 
-const Stack = ({ spacing = "none", children, ...props }) => {
+const StackComponent = ({ spacing = "none", children, ...props }) => {
   const childrenArray = Children.toArray(children);
 
   return (
@@ -22,5 +22,10 @@ const Stack = ({ spacing = "none", children, ...props }) => {
     </Flex>
   );
 };
+
+const Stack = styled(StackComponent)`
+  ${color}
+  ${space}
+`;
 
 export default Stack;
